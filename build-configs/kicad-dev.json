@@ -1,0 +1,30 @@
+{
+    "name:": "KiCad Dev",
+    "output_prefix": "kicad-dev",
+    "package_version": "7.99",
+    "train": "stable",
+    "build_mode": "Release",
+    "nsis": {
+        "file": "install-7.0.nsi"
+    },
+    "sources": {
+        "kicad": {
+            "ref": "branch/3dmodel_to_footprint"
+        },
+        "symbols": {
+            "ref": "tag/7.0.5"
+        },
+        "footprints": {
+            "ref": "tag/7.0.5"
+        },
+        "3dmodels": {
+            "ref": "tag/7.0.5"
+        },
+        "templates": {
+            "ref": "tag/7.0.5"
+        }
+    },
+    "vcpkg": {
+        "manifest_mode": true
+    }
+}
