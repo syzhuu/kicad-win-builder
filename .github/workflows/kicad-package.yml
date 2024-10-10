@@ -70,6 +70,6 @@ jobs:
         with:
           repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
-          asset_name: hq-kicad-${{ steps.latest-release.outputs.tag }}-x86_64.exe
+          asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           overwrite: true
           tag: ${{ steps.latest-release.outputs.tag }}
