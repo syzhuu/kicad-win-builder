@@ -244,7 +244,7 @@ $settingDefault = @{
     VcpkgPlatformToolset = 'v142'
     VsVersionMin = '16.0'
     VsVersionMax = '17.99'
-    SignSubjectName = 'KiCad Services Corporation'
+    SignSubjectName = '深圳华秋电子有限公司'
     UseMsvcCmake = $True
     SentryDsn = ''
 }
@@ -1580,7 +1580,7 @@ function Start-Package-Msix {
                         -Arch "x64" `
                         -IdentityPublisher "CN=069DD09B-C97F-4C04-9248-7A7FA0D53E48" `
                         -IdentityName "KiCad.KiCad" `
-                        -PublisherDisplayName "KiCad Services Corporation"
+                        -PublisherDisplayName "深圳华秋电子有限公司"
 
     $priFilePath = Join-Path -Path $destRoot -ChildPath "priconfig.xml"
     #makepri createconfig /cf priconfig.xml /dq en-US
