@@ -665,7 +665,7 @@ function Start-Build {
     )
 
     # NOTE Change to your own fork
-    Get-Source -url https://gitlab.com/kicad-hq/kicad.git `
+    Get-Source -url https://gitlab.com/kicad/code/kicad.git `
                -dest (Get-Source-Path kicad) `
                -sourceType git `
                -latest $latest `
@@ -849,11 +849,12 @@ function Build-Vcpkg {
 
         Write-Host "Checking out vcpkg to $vcpkgPath" -ForegroundColor Yellow
         
-        if($buildConfig.vcpkg.manifest_mode) {
-            git clone https://github.com/microsoft/vcpkg.git $vcpkgPath
-        } else {
-            git clone https://gitlab.com/kicad/packaging/vcpkg.git $vcpkgPath
-        }
+        # if($buildConfig.vcpkg.manifest_mode) {
+        #     git clone https://github.com/microsoft/vcpkg.git $vcpkgPath
+        # } else {
+        #     git clone https://gitlab.com/kicad/packaging/vcpkg.git $vcpkgPath
+        # }
+        git clone https://github.com/Huaqiu-Electronics/vcpkg.git $vcpkgPath
 
         Set-Config -VcpkgPath $vcpkgPath 
 
