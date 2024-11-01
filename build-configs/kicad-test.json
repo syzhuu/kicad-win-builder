@@ -24,10 +24,10 @@
             "ref": "tag/8.0.6"
         },
         "hqpcb": {
-            "ref": "KiCAD-HQPCB-2.0.3"
+            "ref": "KiCAD-HQPCB-2.0.4"
         },
         "hqpcb-sha256": {
-            "ref": "567cd2f2ce692583f3bf2c11de0312d376ddf27e0b238c8887c1f4550596ad2d"
+            "ref": "322c88a9a5a3153c4e5b3fc75669d04ec928f020d81f49a321183322528d2bfe"
         },
         "hqdfm": {
             "ref": "KICAD-HQDFM-1.0.1"
