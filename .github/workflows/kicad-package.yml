@@ -9,7 +9,7 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   create_archive:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
       - name: Get latest tag
         uses: oprypin/find-latest-tag@v1
