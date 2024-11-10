@@ -1367,14 +1367,15 @@ function Start-Package-Nsis {
     # }
     # Copy-Item -Path "$env:VCToolsRedistDir\*" -Destination $vcredistDest -Include vc_redist*
 
+    if ($env:VCToolsRedistDir -eq $null) {
+        # XXX: Hack to work around this issue: https://github.com/actions/runner-images/issues/10819
+        $env:VCToolsRedistDir = -join ($env:VCINSTALLDIR, "Redist\MSVC\", $env:VCToolsVersion, "\")
+    }
+
     $destRoot = Join-Path -Path $PSScriptRoot -ChildPath ".out\$buildName\"
     $destBin = Join-Path -Path $destRoot -ChildPath "bin\"    
 
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\msvcp140.dll  -Destination $destBin
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\msvcp140_1.dll  -Destination $destBin
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\msvcp140_2.dll  -Destination $destBin
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\vcruntime140.dll  -Destination $destBin
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\vcruntime140_1.dll  -Destination $destBin
+    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\*.dll  -Destination $destBin
 
     ## default
     $redistVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$env:VCToolsRedistDir\vc_redist.x64.exe")
