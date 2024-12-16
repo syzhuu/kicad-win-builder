@@ -9,7 +9,7 @@
     },
     "sources": {
         "kicad": {
-            "ref": "branch/release/8.0"
+            "ref": "branch/test-release/8.0"
         },
         "symbols": {
             "ref": "tag/8.0.7"
@@ -35,7 +35,7 @@
         "hqdfm-sha256": {
             "ref": "66fad2c5eefe5088f39b19109e26cf6d6ca6e83d75a8f074580689417c2eb49f"
         }
-    }, 
+    },
     "vcpkg": {
         "manifest_mode": true
     }

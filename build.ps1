@@ -1361,11 +1361,21 @@ function Start-Package-Nsis {
     Copy-Item $nsisSource -Destination $destRoot -Recurse -Container -Force
 
     ## copy redist over to nsis folder from MSVC itself
-    $vcredistDest = Join-Path -Path $destRoot -ChildPath "nsis\vcredist\"
-    if( -not (Test-Path $vcredistDest) ) {
-        New-Item -Path $vcredistDest -ItemType "directory"
+    # $vcredistDest = Join-Path -Path $destRoot -ChildPath "nsis\vcredist\"
+    # if( -not (Test-Path $vcredistDest) ) {
+    #     New-Item -Path $vcredistDest -ItemType "directory"
+    # }
+    # Copy-Item -Path "$env:VCToolsRedistDir\*" -Destination $vcredistDest -Include vc_redist*
+
+    if ($env:VCToolsRedistDir -eq $null) {
+        # XXX: Hack to work around this issue: https://github.com/actions/runner-images/issues/10819
+        $env:VCToolsRedistDir = -join ($env:VCINSTALLDIR, "Redist\MSVC\", $env:VCToolsVersion, "\")
     }
-    Copy-Item -Path "$env:VCToolsRedistDir\*" -Destination $vcredistDest -Include vc_redist*
+
+    $destRoot = Join-Path -Path $PSScriptRoot -ChildPath ".out\$buildName\"
+    $destBin = Join-Path -Path $destRoot -ChildPath "bin\"    
+
+    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\*.dll  -Destination $destBin
 
     ## default
     $redistVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$env:VCToolsRedistDir\vc_redist.x64.exe")
