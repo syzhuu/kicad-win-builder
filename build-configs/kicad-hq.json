@@ -9,7 +9,7 @@
     },
     "sources": {
         "kicad": {
-            "ref": "branch/huaqiu/release/8.0"
+            "ref": "branch/release/8.0"
         },
         "symbols": {
             "ref": "tag/8.0.7"
