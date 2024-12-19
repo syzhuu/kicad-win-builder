@@ -1,4 +1,7 @@
 == Readme
+
+![GitHub CI](https://github.com/Huaqiu-Electronics/kicad-win-builder/blob/master/.github/workflows/kicad-package.yml/badge.svg)
+
 This repo contains all the tooling to build and package KiCad for releases.
 
 The builder is composed of PowerShell scripting that allows us to build native Windows logic to handle the build process
