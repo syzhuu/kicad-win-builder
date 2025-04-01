@@ -24,16 +24,22 @@
             "ref": "tag/9.0.1"
         },
         "hqpcb": {
-            "ref": "KiCAD-HQPCB-2.0.7"
+            "ref": "KiCAD-HQPCB-2.0.8"
         },
         "hqpcb-sha256": {
-            "ref": "fa28b30524de4413a26e19bc76aaa6fac32d9e04b42a8e58f5d074e4b2b49182"
+            "ref": "bfc60abb24835c1177dd73cd09e05fcea5bb1984805dc053b7a61822ec8b8ff0"
         },
         "hqdfm": {
-            "ref": "KICAD-HQDFM-2.0.1"
+            "ref": "KICAD-HQDFM-2.0.4"
         },
         "hqdfm-sha256": {
-            "ref": "85e0e95819a3a321362f6232766a4a44ddebd752c237b6ba984f49e96435fa3e"
+            "ref": "a318166f6e319b73d51465407595620544e8805ca5bd40ddb549ca839a018877"
+        },
+        "search": {
+            "ref": "KiCAD-Search-1.0.2"
+        },
+        "search-sha256": {
+            "ref": "187dbe5eff094e6d4e9ba606049efba4beb0a02a735ac26f8c0b449b47ae641b"
         }
     }, 
     "vcpkg": {
