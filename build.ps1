@@ -1030,6 +1030,10 @@ $hqdfmPluginName = (Get-Source-Ref -sourceKey "hqdfm")
 $hqdfmDownload = "https://gitee.com/HQNEXTPCB/kicad-hqdfm-plugin-release/raw/master/$hqdfmPluginName.zip"
 $hqdfmChecksum = (Get-Source-Ref -sourceKey "hqdfm-sha256")
 
+$searchPluginName = (Get-Source-Ref -sourceKey "search")
+$searchDownload = "https://gitee.com/HQNEXTPCB/kicad-hqdfm-plugin-release/raw/master/$searchPluginName.zip"
+$searchChecksum = (Get-Source-Ref -sourceKey "search-sha256")
+
 function Start-Prepare-Package {
     [CmdletBinding()]
     param(
@@ -1115,6 +1119,15 @@ function Start-Prepare-Package {
              -DestPath (Join-Path -Path $desthqPlugin -ChildPath "$hqdfmPluginName.zip") `
              -DownloadPath (Join-Path -Path $BuilderPaths.DownloadsRoot -ChildPath "$hqdfmPluginName.zip") `
              -Checksum $hqdfmChecksum `
+             -ExtractZip $False `
+             -ExtractInSupportRoot $False
+
+
+    Get-Tool -ToolName "SEARCH" `
+             -Url $searchDownload `
+             -DestPath (Join-Path -Path $desthqPlugin -ChildPath "$searchPluginName.zip") `
+             -DownloadPath (Join-Path -Path $BuilderPaths.DownloadsRoot -ChildPath "$searchluginName.zip") `
+             -Checksum $searchChecksum `
              -ExtractZip $False `
              -ExtractInSupportRoot $False
 
