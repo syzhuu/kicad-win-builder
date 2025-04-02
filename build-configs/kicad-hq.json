@@ -36,10 +36,10 @@
             "ref": "a318166f6e319b73d51465407595620544e8805ca5bd40ddb549ca839a018877"
         },
         "search": {
-            "ref": "KiCAD-Search-1.0.2"
+            "ref": "KiCAD-HQSearch-1.0.2"
         },
         "search-sha256": {
-            "ref": "187dbe5eff094e6d4e9ba606049efba4beb0a02a735ac26f8c0b449b47ae641b"
+            "ref": "2b660bf97fafdf25f32a89c3c3d664cc615559fb994a03fbfa146966b5799e45"
         }
     }, 
     "vcpkg": {
