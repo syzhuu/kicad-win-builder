@@ -854,7 +854,7 @@ function Build-Vcpkg {
         # } else {
         #     git clone https://gitlab.com/kicad/packaging/vcpkg.git $vcpkgPath
         # }
-        git clone https://github.com/Huaqiu-Electronics/vcpkg.git $vcpkgPath
+        git clone https://github.com/microsoft/vcpkg.git $vcpkgPath
 
         Set-Config -VcpkgPath $vcpkgPath 
 
