@@ -36,15 +36,13 @@ jobs:
       - name: Cache packages downloaded
         uses: actions/cache@v3
         with:
-          key: package_downloaed
-          restore-keys: package_downloaed
+          key: package-downloaded-${{ steps.latest-release.outputs.tag }}
+          restore-keys: |
+            package-downloaded-
           path: |
             .build
             .downloads
             .support
-
-      # - name: install wxPython
-      # run: pip install -r ./requirements.txt
 
       - name: Triggers a build
         run: ./build.ps1 -Build -Latest -Arch x64 -BuildType Release
@@ -52,8 +50,9 @@ jobs:
       - name: Cache vcpkg
         uses: actions/cache@v3
         with:
-          key: vcpkg_cache
-          restore-keys: vcpkg_cache
+          key: vcpkg-cache-${{ steps.latest-release.outputs.tag }}
+          restore-keys: |
+            vcpkg-cache-
           path: |
             vcpkg
             msys64
