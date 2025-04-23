@@ -36,9 +36,9 @@ jobs:
       - name: Cache packages downloaded
         uses: actions/cache@v3
         with:
-          key: package-downloaded-${{ steps.latest-release.outputs.tag }}
+          key: package-downloaded
           restore-keys: |
-            package-downloaded-
+            package-downloaded
           path: |
             .build
             .downloads
@@ -50,9 +50,9 @@ jobs:
       - name: Cache vcpkg
         uses: actions/cache@v3
         with:
-          key: vcpkg-cache-${{ steps.latest-release.outputs.tag }}
+          key: vcpkg-cache
           restore-keys: |
-            vcpkg-cache-
+            vcpkg-cache
           path: |
             vcpkg
             msys64
