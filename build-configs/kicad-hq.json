@@ -1,7 +1,7 @@
 {
     "name:": "KiCad Huaqiu 9.0.2 ",
     "output_prefix": "kicad-huaqiu-",
-    "package_version": "9.0.2-rc1",
+    "package_version": "9.0.2",
     "train": "stable",
     "build_mode": "Release",
     "nsis": {
@@ -41,7 +41,7 @@
         "search-sha256": {
             "ref": "2b660bf97fafdf25f32a89c3c3d664cc615559fb994a03fbfa146966b5799e45"
         }
-    }, 
+    },
     "vcpkg": {
         "manifest_mode": true
     }
