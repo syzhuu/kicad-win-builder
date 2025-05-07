@@ -1,4 +1,3 @@
----
 name: KiCAD client packaging
 on: # yamllint disable-line rule:truthy
   release:
@@ -21,6 +20,28 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Cache downloaded packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            .build
+            .downloads
+            .support
+          key: packages-${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
+          restore-keys: |
+            packages-${{ runner.os }}-
+
+      - name: Cache vcpkg and msys
+        uses: actions/cache@v3
+        with:
+          path: |
+            vcpkg
+            msys64
+            msys32
+          key: vcpkg-${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-
+
       - name: Configure
         run: ./build.ps1 -Config -UseMsvcCmake $False
 
@@ -30,41 +51,19 @@ jobs:
       - name: Checkout any required tools, setup build environment variables
         run: ./build.ps1 -Env -Arch x64
 
-      - name: Rebuilds vcpkg dependencies
+      - name: Rebuild vcpkg dependencies
         run: ./build.ps1 -Vcpkg -Latest -Arch x64
 
-      - name: Cache packages downloaded
-        uses: actions/cache@v3
-        with:
-          key: package-downloaded
-          restore-keys: |
-            package-downloaded
-          path: |
-            .build
-            .downloads
-            .support
-
-      - name: Triggers a build
+      - name: Build
         run: ./build.ps1 -Build -Latest -Arch x64 -BuildType Release
 
-      - name: Cache vcpkg
-        uses: actions/cache@v3
-        with:
-          key: vcpkg-cache
-          restore-keys: |
-            vcpkg-cache
-          path: |
-            vcpkg
-            msys64
-            msys32
+      - name: Prepare Package
+        run: ./build.ps1 -PreparePackage -Arch x64 -BuildType Release
 
-      - name: Triggers a package operation
-        run: ./build.ps1 -PreparePackage  -Arch x64   -BuildType Release
+      - name: Package using NSIS
+        run: ./build.ps1 -Package -PackType Nsis -Arch x64 -BuildType Release
 
-      - name: Triggers a package operation Nsis
-        run: ./build.ps1 -Package  -PackType Nsis   -Arch x64   -BuildType Release
-
-      - name: Upload installer as asset to release
+      - name: Upload installer to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
