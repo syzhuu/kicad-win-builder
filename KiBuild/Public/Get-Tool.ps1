@@ -15,16 +15,16 @@ function Invoke-WithRetry {
     while ($attempt -lt $MaxRetries -and -not $success) {
         try {
             $attempt++
-            Write-Host "Attempt $attempt: Downloading $Url..." -ForegroundColor Yellow
+            Write-Host "Attempt ${attempt}: Downloading ${Url}..." -ForegroundColor Yellow
             Invoke-WebRequest -Uri $Url -OutFile $OutFile -UserAgent $UserAgent
             $success = $true
         } catch {
-            Write-Warning "Attempt $attempt failed: $_"
+            Write-Warning "Attempt ${attempt} failed: $_"
             if ($attempt -lt $MaxRetries) {
-                Write-Host "Retrying in $RetryDelaySeconds seconds..." -ForegroundColor Yellow
+                Write-Host "Retrying in ${RetryDelaySeconds} seconds..." -ForegroundColor Yellow
                 Start-Sleep -Seconds $RetryDelaySeconds
             } else {
-                throw "Failed to download $Url after $MaxRetries attempts."
+                throw "Failed to download ${Url} after ${MaxRetries} attempts."
             }
         }
     }
