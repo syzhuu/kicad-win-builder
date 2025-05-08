@@ -1,3 +1,36 @@
+function Invoke-WithRetry {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Url,
+        [Parameter(Mandatory=$true)]
+        [string]$OutFile,
+        [int]$MaxRetries = 5,
+        [int]$RetryDelaySeconds = 5,
+        [string]$UserAgent = "NativeHost"
+    )
+
+    $attempt = 0
+    $success = $false
+
+    while ($attempt -lt $MaxRetries -and -not $success) {
+        try {
+            $attempt++
+            Write-Host "Attempt $attempt: Downloading $Url..." -ForegroundColor Yellow
+            Invoke-WebRequest -Uri $Url -OutFile $OutFile -UserAgent $UserAgent
+            $success = $true
+        } catch {
+            Write-Warning "Attempt $attempt failed: $_"
+            if ($attempt -lt $MaxRetries) {
+                Write-Host "Retrying in $RetryDelaySeconds seconds..." -ForegroundColor Yellow
+                Start-Sleep -Seconds $RetryDelaySeconds
+            } else {
+                throw "Failed to download $Url after $MaxRetries attempts."
+            }
+        }
+    }
+}
+
+
 function Get-Tool {
     <#
     .SYNOPSIS
@@ -33,7 +66,7 @@ function Get-Tool {
     if( -not (Test-Path $DestPath) ) {
         Write-Host "Downloading $ToolName..." -ForegroundColor Yellow
 
-        Invoke-WebRequest -Uri $Url -OutFile $DownloadPath -UserAgent "NativeHost" # needed user agent to make invoke-webrequest behave with source forge
+        Invoke-WithRetry -Url $Url -OutFile $DownloadPath
 
         $calculatedChecksum = ( Get-FileHash -Algorithm SHA256 $DownloadPath ).Hash
         if( $calculatedChecksum -ne $Checksum )
