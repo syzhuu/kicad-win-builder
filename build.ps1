@@ -1023,15 +1023,15 @@ function Sign-File {
 }
 
 $hqpcbPluginName = (Get-Source-Ref -sourceKey "hqpcb")
-$hqpcbDownload = "https://gitee.com/HQNEXTPCB/hq-kicad-plugin-release/raw/master/$hqpcbPluginName.zip"
+$hqpcbDownload = "https://raw.githubusercontent.com/Huaqiu-Electronics/kicad-hqpcb-zip/refs/heads/master/$hqpcbPluginName.zip"
 $hqpcbChecksum = (Get-Source-Ref -sourceKey "hqpcb-sha256")
 
 $hqdfmPluginName = (Get-Source-Ref -sourceKey "hqdfm")
-$hqdfmDownload = "https://gitee.com/HQNEXTPCB/kicad-hqdfm-plugin-release/raw/master/$hqdfmPluginName.zip"
+$hqdfmDownload = "https://raw.githubusercontent.com/Huaqiu-Electronics/kicad-hqdfm-zip/refs/heads/master/$hqdfmPluginName.zip"
 $hqdfmChecksum = (Get-Source-Ref -sourceKey "hqdfm-sha256")
 
 $searchPluginName = (Get-Source-Ref -sourceKey "search")
-$searchDownload = "https://gitee.com/HQNEXTPCB/kicad-hqdfm-plugin-release/raw/master/$searchPluginName.zip"
+$searchDownload = "https://raw.githubusercontent.com/Huaqiu-Electronics/kicad-hqdfm-zip/refs/heads/master/$searchPluginName.zip"
 $searchChecksum = (Get-Source-Ref -sourceKey "search-sha256")
 
 function Start-Prepare-Package {
