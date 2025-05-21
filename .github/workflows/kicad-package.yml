@@ -59,10 +59,10 @@ jobs:
         run: ./build.ps1 -Build -Latest -Arch x64 -BuildType Release
 
       - name: Triggers a package operation
-        run: ./build.ps1 -PreparePackage  -Arch x64   -BuildType Release
+        run: ./build.ps1 -PreparePackage  -Arch x64   -BuildType Release -IncludeDebugSymbols
 
       - name: Triggers a package operation Nsis
-        run: ./build.ps1 -Package  -PackType Nsis   -Arch x64   -BuildType Release
+        run: ./build.ps1 -Package  -PackType Nsis   -Arch x64   -BuildType Release -IncludeDebugSymbols
 
       - name: Upload installer as asset to release
         uses: svenstaro/upload-release-action@v2
@@ -70,5 +70,12 @@ jobs:
           repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
+
+          file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-pdbs.zip
+          asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-pdbs.zip    
+
+          file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-vcpkg-pdbs.zip
+          asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-vcpkg-pdbs.zip
+
           overwrite: true
           tag: ${{ steps.latest-release.outputs.tag }}
