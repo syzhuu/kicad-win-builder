@@ -74,12 +74,23 @@ jobs:
           repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
+          overwrite: true
+          tag: ${{ steps.latest-release.outputs.tag }}
 
+      - name: Upload pdbs as asset to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-pdbs.zip
-          asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-pdbs.zip    
+          asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-pdbs.zip
+          overwrite: true
+          tag: ${{ steps.latest-release.outputs.tag }}
 
+      - name: Upload vcpkg pdbs as asset to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-vcpkg-pdbs.zip
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64-vcpkg-pdbs.zip
-
           overwrite: true
           tag: ${{ steps.latest-release.outputs.tag }}
