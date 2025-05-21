@@ -1,6 +1,10 @@
 ---
 name: KiCAD client packaging
-on: # yamllint disable-line rule:truthy
+on:
+  # Github will remove the cache if not used in 7 days
+  schedule:
+    - cron: "0 0 * * 0" # Sunday
+    - cron: "0 0 * * 3" # Wednesday
   release:
     branches: master
     types:
