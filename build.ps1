@@ -241,7 +241,7 @@ $settingsPath = Join-Path -Path $PSScriptRoot -ChildPath "settings.json"
 
 $settingDefault = @{
     VcpkgPath = ''
-    VcpkgPlatformToolset = 'v142'
+    VcpkgPlatformToolset = 'v143'
     VsVersionMin = '16.0'
     VsVersionMax = '17.99'
     SignSubjectName = '深圳华秋电子有限公司'
@@ -1389,7 +1389,7 @@ function Start-Package-Nsis {
     $destRoot = Join-Path -Path $PSScriptRoot -ChildPath ".out\$buildName\"
     $destBin = Join-Path -Path $destRoot -ChildPath "bin\"    
 
-    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC142.CRT\*.dll  -Destination $destBin
+    Copy-Item $env:VCToolsRedistDir\x64\Microsoft.VC143.CRT\*.dll  -Destination $destBin
 
     ## default
     $redistVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$env:VCToolsRedistDir\vc_redist.x64.exe")
