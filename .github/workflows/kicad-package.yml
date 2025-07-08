@@ -36,16 +36,13 @@ jobs:
             .downloads
             .support
 
-      - name: Try load vcpkg cache
+      - name: Try load vcpkg binary cache
         uses: actions/cache@v3
         with:
-          key: vcpkg-cache
+          key: vcpkg-binary-cache
           restore-keys: |
-            vcpkg-cache
-          path: |
-            vcpkg
-            msys64
-            msys32
+            vcpkg-binary-cache
+          path: ${{ env.LOCALAPPDATA }}/vcpkg/archives
 
       - name: Configure
         run: ./build.ps1 -Config -UseMsvcCmake $False
