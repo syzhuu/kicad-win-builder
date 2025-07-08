@@ -42,7 +42,7 @@ jobs:
           key: vcpkg-binary-cache
           restore-keys: |
             vcpkg-binary-cache
-          path: ${{ env.LOCALAPPDATA }}/vcpkg/archives
+          path: $env:LOCALAPPDATA/vcpkg/archives
 
       - name: Configure
         run: ./build.ps1 -Config -UseMsvcCmake $False
