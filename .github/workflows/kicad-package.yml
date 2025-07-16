@@ -1,10 +1,10 @@
 ---
 name: KiCAD client packaging
 on:
-  # Github will remove the cache if not used in 7 days
-  schedule:
-    - cron: "0 0 * * 0" # Sunday
-    - cron: "0 0 * * 3" # Wednesday
+  # # Github will remove the cache if not used in 7 days
+  # schedule:
+  #   - cron: "0 0 * * 0" # Sunday
+  #   - cron: "0 0 * * 3" # Wednesday
   release:
     branches: master
     types:
