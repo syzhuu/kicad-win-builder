@@ -1,4 +1,4 @@
---
+---
 name: KiCAD client packaging
 on:
   # # Github will remove the cache if not used in 7 days
@@ -15,6 +15,16 @@ jobs:
   create_archive:
     runs-on: windows-2022
     steps:
+      - name: Get latest tag
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: Huaqiu-Electronics/kicad-win-builder
+          releases-only: true
+        id: latest-release
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Upload installer as asset to release
         uses: svenstaro/upload-release-action@v2
         with:
