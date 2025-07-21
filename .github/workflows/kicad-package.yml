@@ -22,7 +22,7 @@ jobs:
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           overwrite: true
           tag: ${{ steps.latest-release.outputs.tag }}
-          repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
+          repo_token: "${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}"
 
       - name: Upload pdbs as asset to release
         uses: svenstaro/upload-release-action@v2
