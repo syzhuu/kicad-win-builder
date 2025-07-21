@@ -1,4 +1,4 @@
----
+--
 name: KiCAD client packaging
 on:
   # # Github will remove the cache if not used in 7 days
@@ -18,11 +18,11 @@ jobs:
       - name: Upload installer as asset to release
         uses: svenstaro/upload-release-action@v2
         with:
+          repo_token: ${{ secrets.HUAQIU_ELECTRONICS_TOKEN }}
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           overwrite: true
-          tag: "steps.latest-release.outputs.tag"
-          repo_token: "zasxsbxsbuxusbxusb"
+          tag: ${{ steps.latest-release.outputs.tag }}
 
       - name: Upload pdbs as asset to release
         uses: svenstaro/upload-release-action@v2
