@@ -21,7 +21,7 @@ jobs:
           file: ./.out/kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           asset_name: kicad-huaqiu-${{ steps.latest-release.outputs.tag }}-x86_64.exe
           overwrite: true
-          tag: ${{ steps.latest-release.outputs.tag }}
+          tag: "steps.latest-release.outputs.tag"
           repo_token: "zasxsbxsbuxusbxusb"
 
       - name: Upload pdbs as asset to release
